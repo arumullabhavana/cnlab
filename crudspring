@@ -1,0 +1,59 @@
+Web-inf->jsp(rightclick)->new->jsp->employee.jsp
+employee.jsp:
+        <h1>Employee!</h1>
+        <form method="post" >
+            Id<input type="text" name="t1"/><br>
+            Name<input type="text" name="t2"/><br>
+            Salary<input type="text" name="t3"/><br>
+            <input type="submit" name="submit" value="save"/>
+            <br>${msg}
+        </form>
+    </body>
+</html>
+index.jsp:
+            <tt>web.xml</tt>.</p>
+        <a href="employee.htm">Employee</a>
+    </body>
+</html>
+Dispatcher-servlet.xml:
+    <bean class="controller.EmployeeController"/>
+package(right click)->new->java package->controller(name)
+Controller(right click)->new->abstract controller->class name (here EmployeeController)
+EmployeeController.java:
+package controller;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.AbstractController;
+            HttpServletResponse response) throws Exception {
+        ModelAndView mv=new ModelAndView();
+        if(request.getParameter("submit")!=null)
+        {
+            String id=request.getParameter("t1");
+            String name=request.getParameter("t2");
+            String salary=request.getParameter("t3");
+            model.Employe ob=new model.Employe();
+            ob.setName(name);
+            ob.setSalary(Integer.parseInt(salary));
+            ob.setId(Integer.parseInt(id));
+            try{
+                Class.forName("com.mysql.cj.jdbc.Driver"); 
+          // Connection con = DriverManager.getConnection ("jdbc:mysql://localhost:3306/hibernate_db" ,"root", "password" );
+            Connection con = DriverManager.getConnection ("jdbc:mysql://localhost:3306/hibernate_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC" ,"root", "password" );
+           Statement statement = con.createStatement();
+            String sql = "insert into emp values('"+ob.getId()+"','"+ob.getName()+"','"+ob.getSalary()+"')";
+            int re=statement.executeUpdate(sql);
+            if(re>0){
+                mv.addObject("msg", "Saved Successfully");
+            }
+            con.close();
+           }
+            catch(Exception e){
+            mv.addObject("msg", "error"+e);
+            }
+        }
+        return mv;
+        }
+        
+        
+    }
