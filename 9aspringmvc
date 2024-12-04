@@ -1,0 +1,17 @@
+<bean class="controller.HelloController"/>
+index.jsp
+web.xml</tt>.</p>
+  <a href="hello.htm">Click</a> <!—Add this line -->
+web-inf->jsp(right click)->new->jsp->name:hello->finish
+hello.jsp
+ World!</h1>
+        ${name}
+        ${RollNo}
+package(right click)->new->java package->controller(name)
+Controller(right click)->new->other->filter(SEARCH:  abstract controller)->class name (here HelloController
+ModelAndView mv=new ModelAndView ();
+        mv.addObject("name","Veda");
+        mv.addObject("RollNo","22251A6733");
+        return mv;
+    }
+}
