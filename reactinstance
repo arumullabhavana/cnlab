@@ -1,0 +1,28 @@
+import React from "react";
+import ReactDOM from "react-dom";
+class Greeting extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+ return (
+      <div>
+        <h1>Hello, {this.props.name}!</h1>
+      </div>
+    );
+  }
+}
+
+App.js
+Import Greeting from ‘./Greeting’;
+function App() {
+  return (
+    <div>
+      {/* Each of these is a different instance of the Greeting class component */}
+      <Greeting name="IML" />
+      <Greeting name="FSD" />
+ <Greeting name="BI" />
+    </div>
+  );
+}
+Export default App;
