@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Real-Time Registration Form</title>
+ <link rel="stylesheet" href="validform.css">
+</head>
+<style>
+.valid{
+color:green;
+}
+.invalid{
+color:red;
+}
+</style>
+<body>
+
+  <h2>Registration Form</h2>
+  <form id="registrationForm">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username">
+    <span id="usernameFeedback"></span><br><br>
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email">
+    <span id="emailFeedback"></span><br><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password">
+    <span id="passwordFeedback"></span><br><br>
+
+    <input type="submit" value="Register">
+  </form>
+ <script>
+    function validateUsername() {
+      const username = document.getElementById('username').value;
+      const usernamePattern = /^[a-zA-Z0-9]{3,15}$/;
+      const feedback = document.getElementById('usernameFeedback');
+      if (usernamePattern.test(username)) {
+        feedback.textContent = "Valid username";
+        feedback.className = "valid";
+      } else {
+        feedback.textContent = "Invalid username (3-15 alphanumeric characters)";
+        feedback.className = "invalid";
+      }
+    }
+    function validateEmail() {
+      const email = document.getElementById('email').value;
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const feedback = document.getElementById('emailFeedback');
+      if (emailPattern.test(email)) {
+        feedback.textContent = "Valid email";
+        feedback.className = "valid";
+      } else {
+        feedback.textContent = "Invalid email address";
+        feedback.className = "invalid";
+      }
+    }
+ function validatePassword() {
+      const password = document.getElementById('password').value;
+      const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+      const feedback = document.getElementById('passwordFeedback');
+      if (passwordPattern.test(password)) {
+        feedback.textContent = "Strong password";
+        feedback.className = "valid";
+      } else {
+        feedback.textContent = "Password must be at least 8 characters long, with at least one uppercase letter, one lowercase letter, and one digit";
+        feedback.className = "invalid";
+      }
+ }
+document.getElementById('username').addEventListener('input', validateUsername);    document.getElementById('email').addEventListener('input', validateEmail);
+document.getElementById('password').addEventListener('input', validatePassword);
+document.getElementById('registrationForm').addEventListener('submit', function(event) {
+      validateUsername();
+      validateEmail();
+      validatePassword();
+ if (document.querySelector('.invalid')) {
+        event.preventDefault();
+      }
+    });
+  </script>
+</body>
